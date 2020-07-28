@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+    for num in 1..10 do
+        Blog.create([{ title: "Title_#{num}", content: "Body_#{num}" }])
+    end
+    

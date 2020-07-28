@@ -1,0 +1,9 @@
+<%= search_form_for @search do |q| %>
+    <%= q.label :content_cont, 'コンテンツ検索' %>
+    <div>
+        <%= q.text_field :title_or_content_cont_all, placeholde: "Enter keyword..." %>
+        <span>
+            <%= q.submit "検索" %>
+        </span>
+    </div>
+<% end %>

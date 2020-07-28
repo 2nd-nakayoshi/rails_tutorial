@@ -1,0 +1,21 @@
+<!--  filename:index.html.erb -->
+<%= flash[:success] %>
+<h1>ブログ一覧</h1>
+<%= render 'shared/search_form' %>
+
+<table>
+    <tr>
+        <th>タイトル</th>
+        <th>コンテンツ</th>
+    </tr>
+    <% @blogs.each do |blog| %>
+     <tr>
+        <!-- リンクをクリックすると記事の詳細画面に遷移 -->
+        <td><%= link_to blog.title, blog_path(blog.id) %></td>
+        <td><%= blog.content %></td>
+     </tr>
+    <% end %>
+</table>
+<div>
+    <%= link_to "投稿する", new_blog_path %>
+</div>
