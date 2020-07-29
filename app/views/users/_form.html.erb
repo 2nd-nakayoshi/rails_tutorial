@@ -1,0 +1,21 @@
+<%= form_for(@user) do |f| %>
+    <p>
+        <%= f.label :name, "名前" %>
+        <%= f.text_field :name %>
+    </p>
+    <p>   
+        <%= f.label :email, "メール" %>
+        <%= f.text_field :email %>
+    </p>
+    <p>    
+        <%= f.label :password, "パスワード" %>
+        <%= f.password_field :password %>
+    </p>
+    <p>
+        <%= f.label :password_confirmation, "パスワード確認" %>
+        <%= f.password_field :password_confirmation %>
+    </p>
+    <p>    
+        <%= f.submit yield(:button_text) %>
+    </p>
+<% end %>
