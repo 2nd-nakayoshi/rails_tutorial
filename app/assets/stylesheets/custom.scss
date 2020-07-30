@@ -1,0 +1,35 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#logo {
+    float: left;
+    margin-right: 10px;
+    font-size: 1.7em;
+    color: rgb(12, 226, 84);
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    padding-top: 9px;
+    font-weight: bold;
+  }
+
+.header-area .navbar {
+    border-bottom: 1px solid;
+    height: 55px;
+    .navbar-nav{
+      margin-right: 30px;
+      .nav-link {
+        font-weight: 500;
+        color: rgb(12, 226, 84);
+      }
+    }
+
+}
+
+
+
+
+ul li {
+  list-style: none;
+}
+
+

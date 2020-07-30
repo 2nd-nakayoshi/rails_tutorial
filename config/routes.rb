@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  root 'blogs#index'
+
+  get 'sessions/new'
+  post 'sessions/create'
+  delete 'sessions/destroy'
+  
   # get 'users/index'
   # get 'users/new'
   # get 'users/create'

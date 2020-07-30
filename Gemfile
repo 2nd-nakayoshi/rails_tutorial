@@ -7,6 +7,8 @@ ruby '2.5.8'
 gem 'rails', '~> 5.2.0'
 gem 'ransack'
 gem 'bcrypt'
+gem 'bootstrap-sass'
+gem 'jquery-rails'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server

@@ -1,0 +1,16 @@
+<h1>ログイン</h1>
+<%= form_for(:session, url: sessions_create_path) do |f| %>
+    <p>
+        <%= f.label :name, "名前" %>
+        <%= f.text_field :name %>
+    </p>
+    <p>
+        <%= f.label :password, "パスワード" %>
+        <%= f.password_field :password %>
+    </p>
+    <%= f.submit "ログインする" %>
+<% end %>
+
+<p>登録がまだの方<%= link_to "新規登録", new_user_path %>
+
+

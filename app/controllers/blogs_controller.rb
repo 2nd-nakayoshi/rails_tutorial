@@ -18,7 +18,7 @@ class BlogsController < ApplicationController
       redirect_to action: :show, id: @blog.id
       flash[:success] = "記事を登録しました"
     else
-      flash[:denger] = "記事の登録に失敗しました"
+      flash[:danger] = "記事の登録に失敗しました"
       render :new
     end
   end
@@ -37,7 +37,7 @@ class BlogsController < ApplicationController
       flash[:success] = "記事を更新しました"
       redirect_to action: :show, id: @blog.id
     else
-      flash[:denger] = "記事の更新に失敗しました"
+      flash[:danger] = "記事の更新に失敗しました"
       render :edit
     end
   end
