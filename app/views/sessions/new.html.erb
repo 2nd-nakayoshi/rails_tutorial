@@ -1,16 +1,22 @@
-<h1>ログイン</h1>
-<%= form_for(:session, url: sessions_create_path) do |f| %>
-    <p>
-        <%= f.label :name, "名前" %>
-        <%= f.text_field :name %>
-    </p>
-    <p>
-        <%= f.label :password, "パスワード" %>
-        <%= f.password_field :password %>
-    </p>
-    <%= f.submit "ログインする" %>
-<% end %>
+<body class="form-body text-center">
+    <%= form_for(:session, url: sessions_create_path, html: { class: "form-signin" }) do |f|%>
+        <h1 class="h3 md-3 font-weight-normal">ログイン</h1>
+        <p>
+            <%= f.text_field :name, class: "form-control", placeholder: "名前"%>
+            <%= f.password_field :password, class: "form-control", placeholder: "パスワード"%>
+        </p>
+        <p>
+            <%= f.submit "ログインする", class: "btn btn-lg btn-primary btn-block" %>
+        </p>
+        <p>登録がまだの方<%= link_to "新規登録", new_user_path %></p>
+    <% end %>
+</body>
 
-<p>登録がまだの方<%= link_to "新規登録", new_user_path %>
+
+
+
+
+
+
 
 

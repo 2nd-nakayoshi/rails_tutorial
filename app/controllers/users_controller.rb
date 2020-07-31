@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       flash[:success] = "新規登録に成功しました"
       redirect_to @user
     else
-      flash[:danger] = "登録に失敗しました"
+      flash.now[:danger] = "登録に失敗しました"
       render 'new'
     end
   end
@@ -23,12 +23,24 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "更新しました"
+      redirect_to @user
+    else
+      flash.now[:danger] = "更新に失敗しました"
+      render 'edit'
+    end
   end
 
   def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "退会しました"
+    redirect_to action: :new
   end
 
   private

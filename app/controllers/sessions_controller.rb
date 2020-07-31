@@ -11,15 +11,15 @@ class SessionsController < ApplicationController
       log_in user
       redirect_to user
     else
-      flash[:danger] = "ログインに失敗しました"
+      flash.now[:danger] = "ログインに失敗しました"
       render 'new'
     end
     
   end
 
   def destroy
-    debugger
     log_out
+    flash[:danger] = "ログアウトしました"
     redirect_to root_path
   end
 end
