@@ -7,7 +7,6 @@ body {
 }
 
 
-
 //header
 #logo {
     float: left;
@@ -34,9 +33,7 @@ body {
 }
 
 
-
-
-ul li {
+.nav-item{
   list-style: none;
 }
 
@@ -60,4 +57,29 @@ html{
   max-width: 330px;
   padding: 15px;
   margin: auto;
+}
+
+//blog
+
+//index
+
+.index-body {
+  margin-top: 70px;
+}
+
+
+.card {
+  padding: 5px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.side-var {
+  height: 200px;
+  background-color: white;
+  .input-group {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
 }

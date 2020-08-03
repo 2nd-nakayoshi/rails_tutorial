@@ -1,5 +1,5 @@
 <body class="form-body text-center">
-    <%= form_for(:session, url: sessions_create_path, html: { class: "form-signin" }) do |f|%>
+    <%= form_for(:session, url: login_path, html: { class: "form-signin" }) do |f|%>
         <h1 class="h3 md-3 font-weight-normal">ログイン</h1>
         <p>
             <%= f.text_field :name, class: "form-control", placeholder: "名前"%>

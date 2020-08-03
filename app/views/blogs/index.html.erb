@@ -1,20 +1,37 @@
 <!--  filename:index.html.erb -->
-<h1>ブログ一覧</h1>
-<%= render 'shared/search_form' %>
 
-<table>
-    <tr>
-        <th>タイトル</th>
-        <th>コンテンツ</th>
-    </tr>
-    <% @blogs.each do |blog| %>
-     <tr>
-        <!-- リンクをクリックすると記事の詳細画面に遷移 -->
-        <td><%= link_to blog.title, blog_path(blog.id) %></td>
-        <td><%= blog.content %></td>
-     </tr>
-    <% end %>
-</table>
-<div>
-    <%= link_to "投稿する", new_blog_path %>
+<div class="index-body">
+    
+    <div class="index-header">
+        <h2>ブログ一覧</h2>
+    </div>
+  
+    <div class="col-md-8">
+        <div class="index-content">
+            <% @blogs.each do |blog| %>
+                <div class="card col-6">
+                    <div class="card-header border-primary">
+                        <h4 class="card-title"><%= blog.title%></h4>
+                        <h6 class="card-subtitle md-2 text-muted">ユーザー名</h6>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <%= blog.content%>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <%= link_to  "詳細表示", blog_path(blog.id) %>
+                    </div>
+            </div>
+            <% end %>
+        </div>
+
+    </div>
+    
+    <div class="col-md-3 side-var">
+            <%= render 'shared/search_form' %>
+     </div>
+
+        
 </div>
+

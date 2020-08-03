@@ -19,12 +19,12 @@
                                         <li><%= link_to  "設定", edit_user_path(current_user) %></li>
                                         <li class="divider"></li>
                                         <li>
-                                            <%= link_to  "ログアウト",  sessions_destroy_path, method: :delete %>
+                                            <%= link_to  "ログアウト",  logout_path, method: :delete %>
                                         </li>
                                     </ul>
                                 </li>
                             <% else %>
-                                <li class="nav-item"><%= link_to "ログイン", sessions_new_path, class: "nav-link" %></li>
+                                <li class="nav-item"><%= link_to "ログイン", login_path, class: "nav-link" %></li>
                             <% end %>
                         </ul>
                     </div>

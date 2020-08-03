@@ -4,8 +4,8 @@ class BlogsController < ApplicationController
     # @blogs = Blog.all
       params[:q]['title_or_content_cont_all'] = params[:q]['title_or_content_cont_all'].split(/[\p{blank}\s]+/)
     end
-    @q = Blog.ransack(params[:q])
-    @blogs = @q.result(distinct: true)
+    # @q = Blog.ransack(params[:q])
+    @blogs = Blog.ransack(params[:q]).result(distinct: true)
   end
 
   def new
@@ -18,7 +18,7 @@ class BlogsController < ApplicationController
       redirect_to action: :show, id: @blog.id
       flash[:success] = "記事を登録しました"
     else
-      flash[:danger] = "記事の登録に失敗しました"
+      flash.now[:danger] = "記事の登録に失敗しました"
       render :new
     end
   end
@@ -37,7 +37,7 @@ class BlogsController < ApplicationController
       flash[:success] = "記事を更新しました"
       redirect_to action: :show, id: @blog.id
     else
-      flash[:danger] = "記事の更新に失敗しました"
+      flash.now[:danger] = "記事の更新に失敗しました"
       render :edit
     end
   end
