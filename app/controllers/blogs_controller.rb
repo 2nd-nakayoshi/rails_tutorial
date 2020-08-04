@@ -1,10 +1,11 @@
 class BlogsController < ApplicationController
+before_action :logged_in_user, only: [:create, :destroy]
+
+
   def index
     if params[:q] !=nil
-    # @blogs = Blog.all
       params[:q]['title_or_content_cont_all'] = params[:q]['title_or_content_cont_all'].split(/[\p{blank}\s]+/)
     end
-    # @q = Blog.ransack(params[:q])
     @blogs = Blog.ransack(params[:q]).result(distinct: true)
   end
 
@@ -13,7 +14,7 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.new(blog_params)
+    @blog = current_user.blogs.build(blog_params)
     if @blog.save
       redirect_to action: :show, id: @blog.id
       flash[:success] = "記事を登録しました"
@@ -25,6 +26,8 @@ class BlogsController < ApplicationController
 
   def show
     @blog = Blog.find(params[:id])
+    @user = User.find_by(id: @blog.user_id)
+    
   end
 
   def edit
@@ -45,10 +48,16 @@ class BlogsController < ApplicationController
   def destroy
     @blog = Blog.find(params[:id])
     @blog.destroy
+    flash[:success] = "記事を削除しました"
     redirect_to action: :index
   end
+
+  private
+  
+  def blog_params
+    params.require(:blog).permit(:title, :content)
+  end
+
 end
 
-def blog_params
-  params.require(:blog).permit(:title, :content)
-end
+

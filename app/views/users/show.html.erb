@@ -1,4 +1,25 @@
+<div class="index-body">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="index-content">
 
-<h1>ユーザー詳細<h1>
-<p><%= @user.name %></p>
-<p><%= @user.email %></p>
+            <div class="card col-6 col-md-offset-2">
+                <div class="card-header border-primary">
+                    <h2 class="card-title"><%= @user.name %></h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <%= @user.email %>
+                    </p>
+                </div>
+                <nav class="navbar card-footer">
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav mr-auto">
+                            <li class="nav-item　active"><%= link_to "戻る", blogs_path, class: "nav-link float-left" %></li>
+                            <li class="nav-item"><%= link_to "設定", edit_user_path(current_user), class: "nav-link" %></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+       </div>
+    </div>
+</div>
