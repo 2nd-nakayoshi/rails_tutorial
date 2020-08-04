@@ -21,8 +21,23 @@
                     </div>
                     <nav class="navbar card-footer">
                         <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav mr-auto hidden_box">
+                              <label for="label<%= blog.id %>">コメントする</label>
+                                <input type="checkbox" id="label<%= blog.id %>"/>
+                                <li class="nav-item section hidden_show">
+                                    <%= form_for(:comment, url: comments_path) do |f| %>
+                                        <div class="col-md-3 input-group">
+                                            <%= f.text_area :content, placeholder: "コメント", class: "form-control" %>
+                                            <%= f.hidden_field :blog_id, value: blog.id %>
+                                            <%= f.hidden_field :user_id, value: blog.user.id %>
+                                            <%= f.submit "投稿", class: "btn btn-default"%>
+                                                   
+                                        </div> 
+                                    <% end %>
+                                </li>
+                            </ul>
                             <ul class="nav navbar-nav  navbar-right">
-                                <li class="nav-item　active">
+                               <li class="nav-item　active">
                                     <%= link_to  "詳細表示", blog_path(blog.id), class: "nav-link"  %>
                                 </li>
                             </ul>
@@ -36,4 +51,3 @@
             <%= render 'shared/search_form' %>
      </div>
 </div>
-

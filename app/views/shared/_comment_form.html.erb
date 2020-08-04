@@ -1,0 +1,12 @@
+    <%= form_for(:comment, url: comments_path) do |f| %>
+    <div class="input-group">
+            <%= f.text_field :content, placeholder: "コメント", class: "form-control" %>
+            <%= f.hidden_field :blog_id, value: blog.id %>
+            <%= f.hidden_field :user_id, value: blog.user.id %>
+
+            <span class="input-group-btn">
+                <%= f.submit "投稿", class: "btn btn-default"%>
+            </span>
+
+        <% end %>
+    </div>

@@ -2,7 +2,6 @@
     <div class="col-md-6 col-md-offset-2">
         <div class="col-4 col-md-offset-2">
         <%= form_for(@blog) do |f| %>
-        <h2><%= yield(:page_title) %></h2>
             <%= render 'shared/error_messages', object: f.object %>
              <div class="form-group">
                 <%= f.label :title, "タイトル" %>
@@ -10,7 +9,7 @@
             </div>
              <div class="form-group">
                 <%= f.label :content, "本文" %>
-                <%= f.text_area :content, class: "form-control", placeholder: "本文" %>
+                <%= f.text_area :content, class: "blog-area form-control", placeholder: "本文" %>
             </div>
             <%= f.submit yield(:button_text), class: "btn btn-primary btn-block" %>
         <% end %>

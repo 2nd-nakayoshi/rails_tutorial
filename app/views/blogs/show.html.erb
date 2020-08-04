@@ -26,4 +26,39 @@
             </div>
        </div>
     </div>
+
+    <div class="col-md-6 col-md-offset-4">
+    <h2>コメント</h2>
+    <%= form_for(:comment, url: comments_path) do |f| %>
+        <div class="col-md-3 input-group">
+            <%= f.text_area :content, placeholder: "コメント", class: "form-control" %>
+            <%= f.hidden_field :blog_id, value: @blog.id %>
+            <%= f.hidden_field :user_id, value: @blog.user.id %>
+            <%= f.submit "投稿", class: "btn btn-default"%>  
+        </div> 
+    <% end %>
+    <% @comments.each do |comment| %>
+            <div class="card col-4">
+                <div class="card-body">
+                    <p class="card-text">
+                        <h4 class="card-subtitle md-2 text-muted"><%= comment.user.name %></h4>
+                        <%= simple_format(comment.content)%>
+                        コメント日：<%= comment.updated_at %>
+                    </p>
+                </div>
+                <nav class="navbar card-footer">
+                    <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item　active"></li>
+                    </ul>
+                        <ul class="nav navbar-nav  navbar-right">
+                            <li class="nav-item　active">
+                                <%= link_to  "コメント編集", '#', class: "nav-link"  %>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        <% end %>
+    </div>
 </div>

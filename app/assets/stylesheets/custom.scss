@@ -37,6 +37,8 @@ html{
 textarea.form-control {
   height: 150px;
 }
+
+
 .form-body {
   min-height: 100%;
   display: -ms-flexbox;
@@ -77,3 +79,40 @@ textarea.form-control {
 .card-footer {
   margin-bottom: 0px;
 }
+
+
+//test
+
+/*ボタン装飾*/
+.hidden_box label {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: bold;
+  cursor :pointer;
+}
+
+/*ボタンホバー時*/
+.hidden_box label:hover {
+    background: #efefef;
+}
+/*中身を非表示にしておく*/
+.hidden_box .hidden_show {
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: 0.8s;
+}
+
+/*クリックで中身表示*/
+.hidden_box input:checked ~ .hidden_show {
+  padding: 10px 0;
+  height: auto;
+  opacity: 1;
+}
+
+/*チェックは見えなくする*/
+.hidden_box input[type=checkbox] {
+    display: none;
+}
+
