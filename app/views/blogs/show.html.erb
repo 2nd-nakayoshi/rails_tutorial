@@ -16,11 +16,15 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav mr-auto">
                             <li class="nav-item　active"><%= link_to "戻る", blogs_path, class: "nav-link float-left" %></li>
-                            <li class="nav-item"><%= link_to "編集", edit_blog_path(@blog.id), class: "nav-link" %></li>
+                            <% if logged_in? && current_user?(@blog.user)%>
+                              <li class="nav-item"><%= link_to "編集", edit_blog_path(@blog.id), class: "nav-link" %></li>
+                            <% end %>
                         </ul>
-                        <ul class="nav navbar-nav  navbar-right">
-                            <li class="nav-item"><%= link_to "記事削除", blog_path, method: :delete, data: {confirm: "この記事を削除しますか？"}, class: "nav-link" %></li>
-                        </ul>
+                        <% if logged_in? && current_user?(@blog.user)%>
+                            <ul class="nav navbar-nav  navbar-right">
+                                <li class="nav-item"><%= link_to "記事削除", blog_path, method: :delete, data: {confirm: "この記事を削除しますか？"}, class: "nav-link" %></li>
+                            </ul>
+                        <% end %>
                     </div>
                 </nav>
             </div>
@@ -29,14 +33,17 @@
 
     <div class="col-md-6 col-md-offset-4">
     <h2>コメント</h2>
-    <%= form_for(:comment, url: comments_path) do |f| %>
-        <div class="col-md-3 input-group">
-            <%= f.text_area :content, placeholder: "コメント", class: "form-control" %>
-            <%= f.hidden_field :blog_id, value: @blog.id %>
-            <%= f.hidden_field :user_id, value: @blog.user.id %>
-            <%= f.submit "投稿", class: "btn btn-default"%>  
-        </div> 
+    <% if logged_in? %>
+        <%= form_for(:comment, url: comments_path) do |f| %>
+            <div class="col-md-3 input-group">
+                <%= f.text_area :content, placeholder: "コメント", class: "form-control" %>
+                <%= f.hidden_field :blog_id, value: @blog.id %>
+                <%= f.hidden_field :user_id, value: @blog.user.id %>
+                <%= f.submit "投稿", class: "btn btn-default"%>  
+            </div> 
+        <% end %>
     <% end %>
+
     <% @comments.each do |comment| %>
             <div class="card col-4">
                 <div class="card-body">

@@ -12,7 +12,7 @@
                 <div class="card col-6">
                     <div class="card-header border-primary">
                         <h3 class="card-title"><%= blog.title%></h4>
-                        <h4 class="card-subtitle md-2 text-muted"><%= blog.user.name %></h6>
+                        <h4 class="card-subtitle md-2 text-muted"><%= link_to  blog.user.name , blog.user,  class: "name-link" %></h4>
                     </div>
                     <div class="card-body">
                         <p class="card-text">
@@ -22,8 +22,12 @@
                     <nav class="navbar card-footer">
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav mr-auto hidden_box">
-                              <label for="label<%= blog.id %>">コメントする</label>
+                            <% if logged_in? %>
+                                <label for="label<%= blog.id %>">コメントする</label>
                                 <input type="checkbox" id="label<%= blog.id %>"/>
+                            <% else %>
+                                <li class="nav-item"><%= link_to "ログインしてコメントする", login_path, class: "nav-link" %></li>
+                            <% end %>
                                 <li class="nav-item section hidden_show">
                                     <%= form_for(:comment, url: comments_path) do |f| %>
                                         <div class="col-md-3 input-group">
