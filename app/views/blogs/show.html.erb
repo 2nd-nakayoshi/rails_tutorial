@@ -32,19 +32,19 @@
     </div>
 
     <div class="col-md-6 col-md-offset-4">
-    <h2>コメント</h2>
-    <% if logged_in? %>
-        <%= form_for(:comment, url: comments_path) do |f| %>
-            <div class="col-md-3 input-group">
-                <%= f.text_area :content, placeholder: "コメント", class: "form-control" %>
-                <%= f.hidden_field :blog_id, value: @blog.id %>
-                <%= f.hidden_field :user_id, value: @blog.user.id %>
-                <%= f.submit "投稿", class: "btn btn-default"%>  
-            </div> 
+        <h2>コメント</h2>
+        <% if logged_in? %>
+            <%= form_for(:comment, url: comments_path) do |f| %>
+                <div class="col-md-3 input-group">
+                    <%= f.text_area :content, placeholder: "コメント", class: "form-control" %>
+                    <%= f.hidden_field :blog_id, value: @blog.id %>
+                    <%= f.hidden_field :user_id, value: @blog.user.id %>
+                    <%= f.submit "投稿", class: "btn btn-default"%>  
+                </div> 
+            <% end %>
         <% end %>
-    <% end %>
 
-    <% @comments.each do |comment| %>
+        <% @comments.each do |comment| %>
             <div class="card col-4">
                 <div class="card-body">
                     <p class="card-text">
@@ -55,14 +55,30 @@
                 </div>
                 <nav class="navbar card-footer">
                     <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav mr-auto">
-                        <li class="nav-item　active"></li>
+                    <ul class="nav navbar-nav mr-auto hidden_box">
+                    <% if logged_in? && current_user?(comment.user) %>
+                        <label for="label<%= comment.id %>">コメント編集</label>
+                        <input type="checkbox" id="label<%= comment.id %>"/>
+                    <% end %>
+                        <li class="nav-item section hidden_show">
+                            <%= form_for(comment) do |f| %>
+                                <div class="col-md-3 input-group">
+                                    <%= f.text_area :content, placeholder: "コメント", class: "form-control" %>
+                                    <%= f.hidden_field :blog_id, value: comment.blog.id %>
+                                    <%= f.hidden_field :user_id, value: comment.user.id %>
+                                    <%= f.submit "更新", class: "btn btn-default"%>
+                                            
+                                </div> 
+                            <% end %>
+                        </li>
                     </ul>
+                    <% if logged_in? && current_user?(comment.blog.user) || current_user?(comment.user) %>
                         <ul class="nav navbar-nav  navbar-right">
                             <li class="nav-item　active">
-                                <%= link_to  "コメント編集", '#', class: "nav-link"  %>
+                                <li class="nav-item"><%= link_to "コメント削除", comment_path, method: :delete, data: {confirm: "このコメントを削除しますか？"}, class: "nav-link" %></li>
                             </li>
                         </ul>
+                    <% end %>
                     </div>
                 </nav>
             </div>

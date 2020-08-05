@@ -13,6 +13,25 @@ class CommentsController < ApplicationController
         end
     end
 
+    def update
+        @comment = Comment.find(params[:id])
+        # debugger
+        if @comment.update_attributes(comment_params)
+            flash[:success] = "コメントを更新しました"
+        else
+            flash.now[:danger] = "更新に失敗しました"
+        end
+        redirect_to blog_path(@comment.blog_id)
+    end
+
+    def destroy
+        @comment = Comment.find(params[:id])
+        @blog = Blog.find(@comment.blog_id)
+        @comment.destroy
+        flash[:success] = "コメントを削除しました"
+        redirect_to blog_path(@blog)
+    end
+
     private
 
     def comment_params
