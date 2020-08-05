@@ -5,12 +5,10 @@ class CommentsController < ApplicationController
         
         if @comment.save
             flash[:success] = "コメントを投稿しました"
-            redirect_to blog_path(id: @comment.blog.id)
-            
         else
-            flash.now[:danger] = "コメントの投稿に失敗しました"
-            redirect_to controller: :blogs, action: :index
+            flash[:danger] = "コメントの投稿に失敗しました"
         end
+        redirect_to blog_path(id: @comment.blog.id)
     end
 
     def update
@@ -19,7 +17,7 @@ class CommentsController < ApplicationController
         if @comment.update_attributes(comment_params)
             flash[:success] = "コメントを更新しました"
         else
-            flash.now[:danger] = "更新に失敗しました"
+            flash[:danger] = "更新に失敗しました"
         end
         redirect_to blog_path(@comment.blog_id)
     end
