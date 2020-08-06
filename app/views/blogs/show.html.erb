@@ -63,7 +63,7 @@
                     <% end %>
                         <li class="nav-item section hidden_show">
                             <%= form_for(comment) do |f| %>
-                                <div class="col-md-3 input-group">
+                                <div class="col-md-3 input-group comment-area">
                                     <%= f.text_area :content, placeholder: "コメント", class: "form-control" %>
                                     <%= f.hidden_field :blog_id, value: comment.blog.id %>
                                     <%= f.hidden_field :user_id, value: comment.user.id %>
@@ -76,7 +76,7 @@
                     <% if logged_in? && current_user?(comment.blog.user) || current_user?(comment.user) %>
                         <ul class="nav navbar-nav  navbar-right">
                             <li class="nav-item　active">
-                                <li class="nav-item"><%= link_to "コメント削除", comment_path, method: :delete, data: {confirm: "このコメントを削除しますか？"}, class: "nav-link" %></li>
+                                <li class="nav-item"><%= link_to "コメント削除", comment_path(comment.id), method: :delete, data: {confirm: "このコメントを削除しますか？"}, class: "nav-link" %></li>
                             </li>
                         </ul>
                     <% end %>
