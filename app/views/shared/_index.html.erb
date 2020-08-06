@@ -1,0 +1,49 @@
+<div class="col-md-8">
+        <div class="index-content">
+            <% @blogs.each do |blog| %>
+                <div class="card col-6">
+                    <div class="card-header border-primary">
+                        <div class="card-title">
+                            <h3 class="blog-title"><%= blog.title%></h3>
+                            <p class="blog-created-at">記事投稿日：<%= I18n.l(blog.created_at, format: :short) %></p>
+                        </div>
+                        <h4 class="card-subtitle md-2 text-muted"><%= link_to  blog.user.name , blog.user,  class: "name-link" %></h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <%= simple_format(blog.content)%>
+                        </p>
+                    </div>
+                    <nav class="navbar card-footer">
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav mr-auto hidden_box">
+                            <% if logged_in? %>
+                                <label for="label<%= blog.id %>">コメントする</label>
+                                <input type="checkbox" id="label<%= blog.id %>"/>
+                            <% else %>
+                                <li class="nav-item"><%= link_to "ログインしてコメントする", login_path, class: "nav-link" %></li>
+                            <% end %>
+                                <li class="nav-item section hidden_show">
+                                    <%= form_for(:comment, url: comments_path) do |f| %>
+                                        <div class="col-md-3 input-group">
+                                            <%= f.text_area :content, placeholder: "コメント", class: "form-control" %>
+                                            <%= f.hidden_field :blog_id, value: blog.id %>
+                                            <%= f.hidden_field :user_id, value: blog.user.id %>
+                                            <%= f.submit "投稿", class: "btn btn-default"%>
+                                                   
+                                        </div> 
+                                    <% end %>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav  navbar-right">
+                               <li class="nav-item　active">
+                                    <%= link_to  "詳細表示", blog_path(blog.id), class: "nav-link"  %>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            <% end %>
+        </div>
+        <%= paginate @blogs %>
+    </div>

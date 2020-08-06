@@ -23,6 +23,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @blogs = @user.blogs.page(params[:oage]).per(5)
   end
 
   def edit

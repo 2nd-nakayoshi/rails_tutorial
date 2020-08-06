@@ -4,7 +4,7 @@ include SessionsHelper
 
    def set_search
         @search = Blog.ransack(params[:q])
-        @blogs = @search.result(distinct: true)
+        @blogs = @search.result(distinct: true).page(params[:page]).per(5)
    end
 
    private

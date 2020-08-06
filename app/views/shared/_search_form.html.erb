@@ -1,10 +1,26 @@
 
     <%= search_form_for @search do |q| %>
     <div class="input-group">
-            <%= q.text_field :title_or_content_cont_all, placeholde: "Enter keyword...", class: "form-control" %>
-            <span class="input-group-btn">
-                <%= q.submit "検索", class: "btn btn-default"%>
-            </span>
-
-        <% end %>
+        <%= q.label :title_or_content_or_user_name_cont_all, "キーワードの絞り込み" %>
+        <%= q.text_field :title_or_content_or_user_name_cont_all, placeholde: "Enter keyword...", class: "form-control" %>          
     </div>
+    <div class="input-group">
+        <%= q.label :created_at, "作成日の絞り込み" %>
+        <div class="form-group">
+            <%= q.label :created_at_gteq, "FROM:" %>
+            <%= q.date_field :created_at_gteq, class: "form-control" %>
+        </div> 
+        <div class="form-group">
+            <%= q.label :created_at_lteq, "TO:" %>
+            <%= q.date_field :created_at_lteq, class: "form-control" %>
+        </div> 
+    </div> 
+    <div class="input-group">
+        <%= link_to "クリア", "/", type: "button", class: "btn btn-default" %>
+        <span class="input-group-btn">
+            <%= q.submit "検索", class: "btn btn-default" %>
+         </span>
+
+     </div> 
+    
+    <% end %>
