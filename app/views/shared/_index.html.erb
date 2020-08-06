@@ -18,14 +18,14 @@
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav mr-auto hidden_box">
                             <% if logged_in? %>
-                                <label for="label<%= blog.id %>">コメントする</label>
+                                <label for="label<%= blog.id %>">コメントする(<%= blog.comments.count %>)</label>
                                 <input type="checkbox" id="label<%= blog.id %>"/>
                             <% else %>
                                 <li class="nav-item"><%= link_to "ログインしてコメントする", login_path, class: "nav-link" %></li>
                             <% end %>
                                 <li class="nav-item section hidden_show">
                                     <%= form_for(:comment, url: comments_path) do |f| %>
-                                        <div class="col-md-3 input-group">
+                                        <div class="col-md-3 input-group comment-area">
                                             <%= f.text_area :content, placeholder: "コメント", class: "form-control" %>
                                             <%= f.hidden_field :blog_id, value: blog.id %>
                                             <%= f.hidden_field :user_id, value: blog.user.id %>

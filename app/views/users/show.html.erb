@@ -15,14 +15,21 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav mr-auto">
                             <li class="nav-item　active"><%= link_to "戻る", blogs_path, class: "nav-link float-left" %></li>
-                            <% if logged_in? && current_user?(@user)%>
-                                <li class="nav-item"><%= link_to "設定", edit_user_path(current_user), class: "nav-link" %></li>
-                            <% end %>
+
                         </ul>
+                        <% if logged_in? && current_user?(@user)%>
+                            <ul class="nav navbar-nav  navbar-right">
+                                <li class="nav-item">
+                                    <%= link_to "設定", edit_user_path(current_user), class: "nav-link" %>
+                                </li>
+                            </ul>
+                        <% end %>
                     </div>
                 </nav>
             </div>
        </div>
+           <h4>投稿数(<%= @user.blogs.count %>)</h4>
     </div>
+
     <%= render 'shared/index' %>
 </div>

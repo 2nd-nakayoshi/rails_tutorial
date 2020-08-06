@@ -3,7 +3,7 @@ before_action :logged_in_user, only: [:create, :destroy]
 
 
   def index
-    if params[:q] !=nil
+    if params[:q] !=nil && params[:q][:created_at_gteq].present? && params[:q][:created_at_lteq].present? && params[:q][:title_or_content_or_user_name_cont_all].present?
       params[:q]['title_or_content_or_user_name_cont_all'] = params[:q]['title_or_content_or_user_name_cont_all'].split(/[\p{blank}\s]+/)
     end
       @blogs = Blog.ransack(params[:q]).result(distinct: true).page(params[:page]).per(5)

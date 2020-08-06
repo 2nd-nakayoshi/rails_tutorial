@@ -33,10 +33,10 @@
     </div>
 
     <div class="col-md-8">
-        <h2>コメント</h2>
+        <h2>コメント(<%= @blog.comments.count %>)</h2>
         <% if logged_in? %>
             <%= form_for(:comment, url: comments_path) do |f| %>
-                <div class="col-md-3 input-group">
+                <div class="col-md-6 input-group comment-area">
                     <%= f.text_area :content, placeholder: "コメント", class: "form-control" %>
                     <%= f.hidden_field :blog_id, value: @blog.id %>
                     <%= f.hidden_field :user_id, value: @blog.user.id %>

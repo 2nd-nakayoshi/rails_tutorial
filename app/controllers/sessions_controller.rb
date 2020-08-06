@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       flash[:success] = "ログインしました"
       # debugger
       log_in user
-      redirect_to root_url
+      redirect_to user
     else
       flash.now[:danger] = "ログインに失敗しました"
       render :new
